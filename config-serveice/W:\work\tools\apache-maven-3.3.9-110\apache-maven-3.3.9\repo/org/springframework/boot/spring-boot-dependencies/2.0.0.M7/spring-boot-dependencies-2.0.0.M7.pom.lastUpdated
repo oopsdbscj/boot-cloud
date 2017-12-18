@@ -1,0 +1,9 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Dec 13 18:32:02 CST 2017
+@default-hisw_thirdparty-http\://l21.hisw.cn\:80/nexus/content/repositories/thirdparty/.lastUpdated=1513161119878
+https\://repo.spring.io/snapshot/.error=
+https\://repo.spring.io/milestone/.lastUpdated=1513161122482
+http\://l21.hisw.cn\:80/nexus/content/repositories/thirdparty/.error=Could not transfer artifact org.springframework.boot\:spring-boot-dependencies\:pom\:2.0.0.M7 from/to hisw_thirdparty (http\://l21.hisw.cn\:80/nexus/content/repositories/thirdparty/)\: l21.hisw.cn
+https\://repo.spring.io/snapshot/.lastUpdated=1513161120179
+@default-central-http\://l21.hisw.cn\:80/nexus/content/groups/public/.lastUpdated=1513161119874
+http\://l21.hisw.cn\:80/nexus/content/groups/public/.error=Could not transfer artifact org.springframework.boot\:spring-boot-dependencies\:pom\:2.0.0.M7 from/to central (http\://l21.hisw.cn\:80/nexus/content/groups/public/)\: l21.hisw.cn

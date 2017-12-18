@@ -1,0 +1,9 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Dec 13 18:32:04 CST 2017
+@default-hisw_thirdparty-http\://l21.hisw.cn\:80/nexus/content/repositories/thirdparty/.lastUpdated=1513161122573
+https\://repo.spring.io/snapshot/.error=
+https\://repo.spring.io/milestone/.lastUpdated=1513161124362
+http\://l21.hisw.cn\:80/nexus/content/repositories/thirdparty/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-dependencies\:pom\:Finchley.M5 from/to hisw_thirdparty (http\://l21.hisw.cn\:80/nexus/content/repositories/thirdparty/)\: l21.hisw.cn
+https\://repo.spring.io/snapshot/.lastUpdated=1513161122843
+@default-central-http\://l21.hisw.cn\:80/nexus/content/groups/public/.lastUpdated=1513161122570
+http\://l21.hisw.cn\:80/nexus/content/groups/public/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-dependencies\:pom\:Finchley.M5 from/to central (http\://l21.hisw.cn\:80/nexus/content/groups/public/)\: l21.hisw.cn
