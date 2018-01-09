@@ -4,21 +4,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.MediaType;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Collection;
 import java.util.stream.Stream;
+
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 @RestController
 @Configuration
@@ -46,11 +46,10 @@ class ReservationRestcontroller {
     public ReservationRestcontroller(ReservationRepository rr) {
         this.rr = rr;
     }
-
-    @GetMapping(value = "/reservations", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    Collection<Reservation> reservations() {
-        return rr.findAll();
-    }
+//    @GetMapping(value = "/reservations", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    Collection<Reservation> reservations() {
+//        return rr.findAll();
+//    }
 
 }
 @RefreshScope
@@ -65,6 +64,7 @@ class MesageRestcontroller {
     }
 }
 
+@RepositoryRestResource
 interface ReservationRepository extends JpaRepository<Reservation, Long> {
 }
 
