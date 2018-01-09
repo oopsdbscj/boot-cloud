@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,13 @@ class ReservationApiGatewayRestController{
 
     @RequestMapping(method = RequestMethod.GET,value = "/names")
     public Collection<String> getResrvationNames(){
-        ParameterizedType<Resource<Reservation>> ptr = new ParamterizedType<Resource<Reservation>>(){};
+        ParameterizedTypeReference<Resource<Reservation>> ptr = new ParameterizedTypeReference<Resource<Reservation>>(){};
         ResponseEntity<Resource<Reservation>> entity =
                 this.restTemplate.exchange("http://reservation-service/reservations", HttpMethod.GET,null,ptr);
+        return entity.getBody()
+                .getContent()
+                .stream()
+                .map
     }
 }
 class Reservation{
