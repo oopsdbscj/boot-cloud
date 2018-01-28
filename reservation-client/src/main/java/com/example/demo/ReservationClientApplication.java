@@ -6,16 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @EnableZuulProxy
 @EnableDiscoveryClient
@@ -31,18 +31,24 @@ public class ReservationClientApplication {
 @RequestMapping("/reservations")
 class ReservationApiGatewayRestController{
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemp RestTemp;
 
     @RequestMapping(method = RequestMethod.GET,value = "/names")
     public Collection<String> getResrvationNames(){
-        ParameterizedTypeReference<Resource<Reservation>> ptr = new ParameterizedTypeReference<Resource<Reservation>>(){};
-        ResponseEntity<Resource<Reservation>> entity =
-                this.restTemplate.exchange("http://reservation-service/reservations", HttpMethod.GET,null,ptr);
-        return entity.getBody()
-                .getContent()
-                .stream()
-                .map
+        ParameterizedTypeReference<List<Reservation>> ptr
+                = new ParameterizedTypeReference<List<Reservation>>() {
+        };
+        List<Reservation> reservations = RestTemp.restTemplate.exchange(
+                "http://reservation-service/reservations",
+                HttpMethod.GET, null, ptr).getBody();
+
+        return reservations.stream().map(Reservation::getReservationName).collect(Collectors.toList());
+
     }
+}
+@Component
+class RestTemp{
+    public RestTemplate restTemplate = new RestTemplate();
 }
 class Reservation{
     private String reservationName;
