@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Collection;
 import java.util.stream.Stream;
 
 //import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -46,10 +48,10 @@ class ReservationRestcontroller {
     public ReservationRestcontroller(ReservationRepository rr) {
         this.rr = rr;
     }
-//    @GetMapping(value = "/reservations", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    Collection<Reservation> reservations() {
-//        return rr.findAll();
-//    }
+    @GetMapping(value = "/reservations", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    Collection<Reservation> reservations() {
+        return rr.findAll();
+    }
 
 }
 @RefreshScope

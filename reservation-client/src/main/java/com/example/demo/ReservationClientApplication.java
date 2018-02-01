@@ -26,38 +26,39 @@ public class ReservationClientApplication {
 		SpringApplication.run(ReservationClientApplication.class, args);
 	}
 }
-
+@Component
+class RestTemp{
+    public RestTemplate restTemplate = new RestTemplate();
+}
 @RestController
 @RequestMapping("/reservations")
 class ReservationApiGatewayRestController{
+//    @Autowired
+//    private RestTemplate restTemplate;
     @Autowired
     private RestTemp RestTemp;
 
     @RequestMapping(method = RequestMethod.GET,value = "/names")
     public Collection<String> getResrvationNames(){
         ParameterizedTypeReference<List<Reservation>> ptr
-                = new ParameterizedTypeReference<List<Reservation>>() {
-        };
+                = new ParameterizedTypeReference<List<Reservation>>() {};
         List<Reservation> reservations = RestTemp.restTemplate.exchange(
+//                "http://localhost:8777/reservations",
                 "http://reservation-service/reservations",
                 HttpMethod.GET, null, ptr).getBody();
 
-        return reservations.stream().map(Reservation::getReservationName).collect(Collectors.toList());
+        return reservations.stream().map(Reservation::getName).collect(Collectors.toList());
 
     }
-}
-@Component
-class RestTemp{
-    public RestTemplate restTemplate = new RestTemplate();
 }
 class Reservation{
-    private String reservationName;
+    private String name;
 
-    public String getReservationName() {
-        return reservationName;
+    public String getName() {
+        return name;
     }
 
-    public void setReservationName(String reservationName) {
-        this.reservationName = reservationName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
