@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @SpringBootApplication
 public class ReservationClientApplication {
     @Bean
-    @LoadBalanced
+    @LoadBalanced   //add this anotation to fix the problem that "service id(spring.application.name) can not be recognized"
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
