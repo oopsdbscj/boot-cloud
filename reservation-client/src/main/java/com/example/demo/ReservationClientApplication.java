@@ -141,7 +141,7 @@ class Reservation {
     }
 }
 
-//@Component  //使用hystrix替代fallbackprovider
+//@Component  //使用hystrix circuit breaker替代fallbackprovider
 class MyFallbackProvider implements FallbackProvider {
 
     @Override
