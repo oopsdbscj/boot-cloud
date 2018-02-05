@@ -1,9 +1,11 @@
 package com.example.demo;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.exception.HystrixTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -21,11 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @EnableZuulProxy
-//@EnableCircuitBreaker
+@EnableCircuitBreaker
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -98,6 +101,16 @@ class ReservationApiGatewayRestController {
     private RestTemp RestTemp;*/
     @Autowired
     private ReservationIntegration reservationIntegration;
+
+    private Collection<String> oops() {
+        return new ArrayList<String>(){
+            {
+                add("oops...");
+                add("something wrong...");
+            }};
+    }
+
+    @HystrixCommand(fallbackMethod = "oops")
     @RequestMapping(method = RequestMethod.GET, value = "/names")
     public Collection<String> getResrvationNames() {
         /*ParameterizedTypeReference<List<Reservation>> ptr
@@ -128,7 +141,7 @@ class Reservation {
     }
 }
 
-@Component
+//@Component  //使用hystrix替代fallbackprovider
 class MyFallbackProvider implements FallbackProvider {
 
     @Override
