@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: turbine
+  cloud:
+    config:
+     uri: http://localhost:8888
+server:
+  port: 5678
+turbine:
+  appConfig: reservation-client,reservation-client-1
+  clusterNameExpression: "'default'"
+  combine:
+    host:
+     port: true
