@@ -15,8 +15,8 @@ import rx.subjects.PublishSubject;
 @Configuration
 @SpringBootApplication
 @EnableTurbineStream
-@EnableHystrix
-@EnableHystrixDashboard
+//@EnableHystrix
+//@EnableHystrixDashboard
 public class TurbineStreamServerApplication {
 
 	public static void main(String[] args) {
