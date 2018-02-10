@@ -52,7 +52,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-netflix-turbine-stream</artifactId>
-			<version>1.4.3.RELEASE</version>
 		</dependency>
 
 		<dependency>
